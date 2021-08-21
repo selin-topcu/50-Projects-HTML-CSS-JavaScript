@@ -1,0 +1,90 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap");
+:root {
+  --line-border-fill: #28a281;
+  --line-border-empty: #d3d3d3;
+}
+
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: "Nunito", sans-serif;
+  display: flex;
+
+  align-items: center; /* ortalı hizalama*/
+  justify-content: center;
+  height: 100vh; /* üstten verilen yükseklik */
+  overflow: hidden; /* scrool bar gizleme*/
+  margin: 0;
+}
+.container {
+  text-align: center;
+}
+.progress-container {
+  display: flex;
+  justify-content: space-between; /* sayılar arasında boşluk verir*/
+  position: relative;
+  margin-bottom: 30px;
+  max-width: 100%;
+  width: 350px;
+}
+.progress-container::before {
+  content: "";
+  background-color: var(--line-border-empty);
+  position: absolute; /*mutlak hizalama sağlar */
+  top: 50%; /* ilerleme çubuğunun sayılar ile hizalanmasını sağlar */
+  transform: translateY(
+    -50%
+  ); /*y eksenine göre sayıların konumun ile aynı noktaya getirir */
+  height: 13px;
+  width: 100%;
+  z-index: -1; /*ilerleme çubuğunu sayıların arkasına gönderir*/
+}
+
+.progress {
+  background-color: var(--line-border-fill);
+  position: absolute; /*mutlak hizalama sağlar */
+  top: 50%; /* ilerleme çubuğunun sayılar ile hizalanmasını sağlar */
+  transform: translateY(
+    -50%
+  ); /*y eksenine göre sayıların konumun ile aynı noktaya getirir */
+  height: 13px;
+  width: 0%;
+  z-index: -1; /*ilerleme çubuğunu sayıların arkasına gönderir*/
+  transition: 0.8s ease;
+}
+.circle {
+  background-color: #ffffff;
+  color: #000000;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center; /* dikey de daire içindeki sayıları ortalar*/
+  justify-content: center; /* yatay da daire içindeki sayıları ortalar*/
+  border: 2px solid var(--line-border-empty);
+  transition: 0.4s ease;
+}
+.circle.active {
+  border-color: var(--line-border-fill);
+}
+.btn {
+  background-color: var(--line-border-fill);
+  color: #ffffff;
+  padding: 8px 30px;
+  border-radius: 20px;
+  cursor: pointer;
+  border: 0;
+}
+.btn:active {
+  transform: scale(
+    0.97
+  ); /* basıldığında butonun ne kadar geriye doğru gideceğini belirler */
+}
+.btn:focus {
+  outline: 0; /*tıklandığında dışarıdaki çizginin kalınlığını 0 yapar*/
+}
+.btn:disabled {
+  background-color: var(--line-border-empty);
+  cursor: not-allowed;
+}
